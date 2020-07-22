@@ -1,6 +1,7 @@
-// Loading the Drop-down list
+// Loading the Drop-down list and the Carouselgut
 $(document).ready(function () {
     $('select').formSelect();
+    $('.carousel').carousel();
 });
 
 var shortTerm = document.getElementsByName("shortTerm");
