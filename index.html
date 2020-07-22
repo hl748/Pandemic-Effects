@@ -32,18 +32,18 @@
                     <option value="2">The Guardian</option>
                 </select>
             </div>
-            <!-- <label>Materialize Select</label> -->
+            <label>Time Frame</label>
             <form action="#">
                 <p>
-                    <label>
-                        <input name="shortTerm" type="radio" checked />
-                        <span>Short Term (3 months)</span>
+                    <label for="shortTerm">
+                        <input id="shortTerm" name="shortTerm" type="radio"/>
+                        <span>Short Term (February 1, 2020)</span>
                     </label>
                 </p>
                 <p>
-                    <label>
-                        <input name="longTerm" type="radio" />
-                        <span>Long Term (1 year)</span>
+                    <label for="longTerm">
+                        <input id="longTerm" name="longTerm" type="radio" />
+                        <span>Long Term (1 Year Ago Today)</span>
                     </label>
                 </p>
             </form>
@@ -97,6 +97,9 @@
 
 <!-- jQuery Script -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<!-- Moment Script -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
