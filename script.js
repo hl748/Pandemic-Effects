@@ -7,4 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   $(document).ready(function(){
     $('select').formSelect();
+    $(document).ready(function(){
+      $('.carousel').carousel();
+    });
   });
