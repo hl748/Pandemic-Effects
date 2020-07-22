@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <title>Pandemic Effects</title>
 </head>
@@ -24,7 +24,7 @@
                 <input id="keywordSearch" type="text" class="validate">
                 <label class="active" for="keywordSearch">Keyword</label>
             </div>
-            
+
             <div class="input-field row">
                 <select multiple>
                     <option value="" disabled selected>Choose your news source</option>
@@ -32,64 +32,74 @@
                     <option value="2">The Guardian</option>
                 </select>
             </div>
-            <!-- <label>Materialize Select</label> -->
+            <label>Time Frame</label>
             <form action="#">
                 <p>
-                    <label>
-                        <input name="shortTerm" type="radio" checked />
-                        <span>Short Term (3 months)</span>
+                    <label for="shortTerm">
+                        <input id="shortTerm" name="shortTerm" type="radio"/>
+                        <span>Short Term (February 1, 2020)</span>
                     </label>
                 </p>
                 <p>
-                    <label>
-                        <input name="longTerm" type="radio" />
-                        <span>Long Term (1 year)</span>
+                    <label for="longTerm">
+                        <input id="longTerm" name="longTerm" type="radio" />
+                        <span>Long Term (1 Year Ago Today)</span>
                     </label>
                 </p>
             </form>
             <button class="btn waves-effect waves-light" type="submit" name="action" id="searchBtn">Search
-                <i class="material-icons right"></i>
+                <i class="material-icons right">search</i>
             </button>
         </div>
-            
-         <div class="col s9">
-             <div class="col s6 m6">
-                 <div class="card blue-grey darken-1">
-                     <div id="preCOVID" class="card-content white-text">
-                         <span class="card-title">Pre: COVID Outbreak</span>
-                         <p>The most frequent</p>
-                         <p>Second most</p>
-                         <p>Third most</p>
-                        </div>
-                        <!-- <div class="card-action">
+
+        <div class="col s9">
+            <div class="col s6 m6">
+                <div class="card blue-grey darken-1">
+                    <div id="preCOVID" class="card-content white-text">
+                        <span class="card-title">Pre: COVID Outbreak</span>
+                        <p>The most frequent</p>
+                        <p>Second most</p>
+                        <p>Third most</p>
+                    </div>
+                    <!-- <div class="card-action">
                             <a href="#">This is a link</a>
                             <a href="#">This is a link</a>
                         </div> -->
-                    </div>
                 </div>
-                <div class="col s6 m6">
-                    <div class="card blue-grey darken-1">
-                        <div id="postCOVID" class="card-content white-text">
-                            <span class="card-title">Post: COVID Outbreak</span>
-                            <p>The most frequent</p>
-                            <p>Second most</p>
-                            <p>Third most</p>
-                        </div>
-                        <!-- <div class="card-action">
-                            <a href="#">This is a link</a>
-                            <a href="#">This is a link</a>
-                        </div> -->
-                    </div>
-                </div>
-                
-            </div>  
             </div>
-            
+            <div class="col s6 m6">
+                <div class="card blue-grey darken-1">
+                    <div id="postCOVID" class="card-content white-text">
+                        <span class="card-title">Post: COVID Outbreak</span>
+                        <p>The most frequent</p>
+                        <p>Second most</p>
+                        <p>Third most</p>
+                    </div>
+                    <!-- <div class="card-action">
+                            <a href="#">This is a link</a>
+                            <a href="#">This is a link</a>
+                        </div> -->
+                </div>
+            </div>
+            <div class="carousel">
+                <a class="carousel-item" href="#one!"><img src="https://lorempixel.com/250/250/nature/1"></a>
+                <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/250/250/nature/2"></a>
+                <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/250/250/nature/3"></a>
+                <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/250/250/nature/4"></a>
+                <a class="carousel-item" href="#five!"><img src="https://lorempixel.com/250/250/nature/5"></a>
+              </div>
+
+        </div>
+    </div>
+
 
 </body>
 
 <!-- jQuery Script -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<!-- Moment Script -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
