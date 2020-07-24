@@ -4,6 +4,8 @@ $(document).ready(function () {
   $('.carousel').carousel();
 });
 
+$(".current-date").text(moment().format("LLL"));
+
 // Global variable
 var shortTerm = document.getElementsByName("shortTerm");
 var keywordSearch = $("#keywordSearch")[0];
