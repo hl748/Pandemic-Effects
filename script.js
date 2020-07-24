@@ -1,7 +1,7 @@
 // Loading the Drop-down list and the Carouselgut
 $(document).ready(function () {
-  $('select').formSelect();
-  $('.carousel').carousel();
+    $('select').formSelect();
+    $('.carousel').carousel();
 });
 
 $(".current-date").text(moment().format("LLL"));
@@ -14,50 +14,50 @@ var title
 var word
 var titleArray = []
 var removeWords = ['the', 'a', 'an', 'some', 'saw', 'time', 'really', 'today', 'dont', 'do', 'of', 'is', 'are', 'going', 'to', 'got', 'didnt', 'cant', 'can', 'will', 'finally', 'going', 'new', 'wait', 'think', 'just', 'see', 'one', 'still', 'might', 'shall', 'in', 'for', 'and', "",
-  'be', 'as', 'arent', 'how', 'with', 'its', keywordSearch.value.toLowerCase()]
-var displayObj = [{}];
-
-console.log(displayObj)
+    'be', 'as', 'arent', 'how', 'with', 'its', keywordSearch.value.toLowerCase()]
+var displayObj = {};
 
 // function to remove words
 function RemoveWords() {
-  if (title !== null) {
-    title = title.replace(/[^a-zA-Z ]/g, "").toLowerCase()
-    word = title.split(" ")
-    word = word.filter(function (x) {
-      return !removeWords.includes(x);
-    });
-    titleArray = titleArray.concat(word);
-  }
+    if (title !== null) {
+        title = title.replace(/[^a-zA-Z ]/g, "").toLowerCase()
+        word = title.split(" ")
+        word = word.filter(function (x) {
+            return !removeWords.includes(x);
+        });
+        titleArray = titleArray.concat(word);
+    }
 }
 
 // function to sort and count number of duplicated words
 function sortWords() {
-  titleArray.sort();
-  var current = null;
-  var cnt = 0;
-  for (var i = 0; i <= titleArray.length; i++) {
-    if (titleArray[i] != current) {
-      if (cnt > 0) {
-        // localStorage.setItem(cnt, current)
-      }
-      current = titleArray[i];
-      cnt = 1;
-    } else {
-
-      // localStorage.setItem(cnt, current)
-      cnt++;
+    titleArray.sort();
+    var current = null;
+    var cnt = 0;
+    localStorage.setItem("titleArray", JSON.stringify(titleArray));
+    for (var i = 0; i <= titleArray.length; i++) {
+        if (titleArray[i] != current) {
+            if (cnt > 0) {
+                displayObj[titleArray[i]] = cnt;
+            }
+            current = titleArray[i];
+            cnt = 1;
+        } else {
+            cnt++;
+        }
     }
-  }
-  if (cnt > 0) {
-    // localStorage.setItem(cnt, current)
-  }
+    var maxValue = 0;
+    for (var [key, value] of Object.entries(displayObj)) {
+        if (`${value}` > maxValue) {
+            maxValue = `${value}`;
+        }
+        console.log(`${key}: ${value}`)
+    }
 
+    if (cnt > 0) {
+    }
 }
-
-// function largestCounts() {
-// localStorage.getItem()
-// }
+// Find all the keys in key/values with max values
 
 // The Guardian function
 function GuardianSearch() {
@@ -80,38 +80,35 @@ function GuardianSearch() {
       RemoveWords()
     }
     sortWords()
-    // largestCounts()
     console.log(titleArray)
     console.log(displayObj)
   })
 }
 
-
 function NYTimesSearch() {
-  var APIKey = "2dUYhsd7NHElbbIY9bgav2GCAlGSin97";
-  var NYTimesURL;
-  var beginDate;
+    var APIKey = "2dUYhsd7NHElbbIY9bgav2GCAlGSin97";
+    var NYTimesURL;
+    var beginDate;
 
-  if ($("#shortTerm")[0].checked === true) {
-    beginDate = 20200201;
-    NYTimesURL = "https:api.nytimes.com/svc/search/v2/articlesearch.json?q=" + keywordSearch.value + "&api-key=" + APIKey;
-  } else {
-    beginDate = moment().format("YYYYMMDD") - 10000;
-    queryURL = "https:api.nytimes.com/svc/search/v2/articlesearch.json?q=" + keywordSearch.value + "&api-key=" + APIKey;
-  }
-  $.ajax({
-    url: NYTimesURL,
-    method: "GET"
-  }).then(function (response) {
-    for (var i = 0; i < 10; i++) {
-      title = response.response.docs[i].headline.print_headline
-      RemoveWords()
+    if ($("#shortTerm")[0].checked === true) {
+        beginDate = 20200201;
+        NYTimesURL = "https:api.nytimes.com/svc/search/v2/articlesearch.json?q=" + keywordSearch.value + "&api-key=" + APIKey;
+    } else {
+        beginDate = moment().format("YYYYMMDD") - 10000;
+        queryURL = "https:api.nytimes.com/svc/search/v2/articlesearch.json?q=" + keywordSearch.value + "&api-key=" + APIKey;
     }
-    sortWords()
-    // largestCounts()
-    console.log(titleArray)
-    console.log(displayObj)
-  })
+    $.ajax({
+        url: NYTimesURL,
+        method: "GET"
+    }).then(function (response) {
+        for (var i = 0; i < 10; i++) {
+            title = response.response.docs[i].headline.print_headline
+            RemoveWords()
+        }
+        sortWords()
+        console.log(titleArray)
+        console.log(displayObj)
+    })
 }
 
 // $("#searchBtn").on("click", GuardianSearch)
