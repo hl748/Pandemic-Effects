@@ -1,9 +1,58 @@
-.s12 {
-    background-color: rgb(12, 99, 99);
-    color: white;
-    text-align: center;
-    text-decoration: wheat;
-    
-  
-   
+.nav-wrapper {
+    background-color: rgb(12, 99, 99)
 }
+
+.preCOVID {
+    @extend .blue, .lighten-4;
+}
+
+.postCOVID {
+
+}
+
+.first-most {
+    color: red;
+}
+
+.second-most {
+    color: orange;
+}
+
+.third-most {
+    color: yellow;
+}
+
+.fourth-most{
+    color: lightblue;
+}
+
+.fifth-most {
+    color: blue;
+}
+
+.sixth-most {
+    color: darkblue;
+}
+
+.seventh-most {
+    color: lightgreen;
+}
+
+.eighth-most {
+    color: lightpink;
+}
+
+.ninth-most {
+    color: lightsalmon;
+}
+
+.tenth-most {
+    color: slategray
+}
+
+
+
+
+
+
+
