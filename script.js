@@ -3,7 +3,7 @@ $(document).ready(function () {
     $('select').formSelect();
     $('.carousel').carousel();
 });
-  
+
 $(".current-date").text(moment().format("LLL"));
 
 // Global variable
@@ -47,12 +47,27 @@ function sortWords() {
         }
     }
     var maxValue = 0;
+    var maxKey;
+    var sortableDisplayObj = [];
     for (var [key, value] of Object.entries(displayObj)) {
         if (`${value}` > maxValue) {
             maxValue = `${value}`;
+            maxKey = `${key}`;
         }
-        console.log(`${key}: ${value}`)
+        console.log(`${key}: ${value}`);
+        // console.log(displayObj);
     }
+    
+    for (var keyword in displayObj) {
+        sortableDisplayObj.push([keyword], displayObj[keyword]);
+    }
+    sortableDisplayObj.sort(function (a, b) {
+        return a[1] - b[1];
+    })
+    console.log(sortableDisplayObj);
+    $("<p>").text(maxKey).appendTo($("#preCOVID"))
+    // console.log(maxValue);
+    // console.log(maxKey);
 
     if (cnt > 0) {
     }
@@ -61,28 +76,28 @@ function sortWords() {
 
 // The Guardian function
 function GuardianSearch() {
-  var guardianAPI = "fac02636-ec64-432c-80e9-88d7553d783c"
-  var beginDate;
-  if ($("#shortTerm")[0].checked === true) {
-    var guardianURL = "https://content.guardianapis.com/search?q=" + keywordSearch.value + "&from-date=2020-02-01&api-key=" + guardianAPI;
+    var guardianAPI = "fac02636-ec64-432c-80e9-88d7553d783c"
+    var beginDate;
+    if ($("#shortTerm")[0].checked === true) {
+        var guardianURL = "https://content.guardianapis.com/search?q=" + keywordSearch.value + "&from-date=2020-02-01&api-key=" + guardianAPI;
 
-  } else {
-    beginDate = moment().format("YYYYMMDD") - 10000
-    var guardianURL = "https://content.guardianapis.com/search?q=" + keywordSearch.value + "&from-date=" + beginDate + "&api-key=" + guardianAPI;
-  }
-
-  $.ajax({
-    url: guardianURL,
-    method: "GET"
-  }).then(function (response) {
-    for (var i = 0; i < 10; i++) {
-      title = response.response.results[i].webTitle
-      RemoveWords()
+    } else {
+        beginDate = moment().format("YYYYMMDD") - 10000
+        var guardianURL = "https://content.guardianapis.com/search?q=" + keywordSearch.value + "&from-date=" + beginDate + "&api-key=" + guardianAPI;
     }
-    sortWords()
-    console.log(titleArray)
-    console.log(displayObj)
-  })
+
+    $.ajax({
+        url: guardianURL,
+        method: "GET"
+    }).then(function (response) {
+        for (var i = 0; i < 10; i++) {
+            title = response.response.results[i].webTitle
+            RemoveWords()
+        }
+        sortWords()
+        // console.log(titleArray)
+        // console.log(displayObj)
+    })
 }
 
 function NYTimesSearch() {
@@ -106,8 +121,8 @@ function NYTimesSearch() {
             RemoveWords()
         }
         sortWords()
-        console.log(titleArray)
-        console.log(displayObj)
+        // console.log(titleArray)
+        // console.log(displayObj)
     })
 }
 
