@@ -2,56 +2,55 @@
     background-color: rgb(12, 99, 99);
     color: white;
     text-align: center;
-    text-decoration: wheat;  
+}
+#header {
+    height: 10px;
+    position: relative;
+    bottom: 30px;
 }
 
-.preCOVID {
-    @extend .blue, .lighten-4;
+.searchBar  {
+    padding-left: 20px;
+       
+}
+label {
+    padding-left: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+    top: 10px;   
+}
+
+.dropDown{
+    padding: 20px;
+}
+
+.dropDown-header {
+    color: #9E9E9E;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+ button{
+    position: relative;
+    left: 85px;
+    margin-top: 30px;
+}
+.carousel {
+    
+}
+/* .preCOVID {
+    
 }
 
 .postCOVID {
 
 }
 
-.first-most {
-    color: red;
-}
+.radioButton:hover {
+    
+} */
 
-.second-most {
-    color: orange;
-}
-
-.third-most {
-    color: yellow;
-}
-
-.fourth-most{
-    color: lightblue;
-}
-
-.fifth-most {
-    color: blue;
-}
-
-.sixth-most {
-    color: darkblue;
-}
-
-.seventh-most {
-    color: lightgreen;
-}
-
-.eighth-most {
-    color: lightpink;
-}
-
-.ninth-most {
-    color: lightsalmon;
-}
-
-.tenth-most {
-    color: slategray
-}
 
 
 
