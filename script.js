@@ -13,8 +13,9 @@ var keywordSearch = $("#keywordSearch")[0];
 var title
 var word
 var titleArray = []
-var removeWords = ['the', 'a', 'an', 'some', 'saw', 'time', 'really', 'today', 'dont', 'do', 'of', 'is', 'are', 'going', 'to', 'got', 'didnt', 'cant', 'can', 'will', 'finally', 'going', 'new', 'wait', 'think', 'just', 'see', 'one', 'still', 'might', 'shall', 'in', 'for', 'and', "",
-    'be', 'as', 'arent', 'how', 'with', 'its', keywordSearch.value.toLowerCase()]
+var removeWords = ['the', 'a', 'an', 'some', 'saw', 'time', 'really', 'today', 'dont', 'do', 'of', 'is', 'are', 'going', 'to', 'got', 'didnt', 'cant', 'can', 'will', 'finally', 'going', 'new', 'wait', 'think', 'just', 'see', 'one', 'still', 'might', 'shall', 'in', 'for', 'and', "", 'be', 'as', 'arent', 'how', 'with', 'its', keywordSearch.value.toLowerCase()]
+var beginDate;
+var endDate;
 var displayObj = {};
 
 // function to remove words
@@ -73,16 +74,19 @@ function sortWords() {
 }
 // Find all the keys in key/values with max values
 
-// The Guardian function
-function GuardianSearch() {
+// The Guardian function - PAST
+function GuardianSearchPast() {
     var guardianAPI = "fac02636-ec64-432c-80e9-88d7553d783c"
-    var beginDate;
+
     if ($("#shortTerm")[0].checked === true) {
-        var guardianURL = "https://content.guardianapis.com/search?q=" + keywordSearch.value + "&from-date=2020-02-01&api-key=" + guardianAPI;
+        var guardianURL = "https://content.guardianapis.com/search?q=" + keywordSearch.value + "&from-date=2020-02-01&to-date=2020-03-01&api-key=" + guardianAPI;
 
     } else {
-        beginDate = moment().format("YYYYMMDD") - 10000
-        var guardianURL = "https://content.guardianapis.com/search?q=" + keywordSearch.value + "&from-date=" + beginDate + "&api-key=" + guardianAPI;
+        beginDate = moment().subtract(1, "years").format("YYYY-MM-DD")
+        console.log(beginDate)
+        endDate = moment().subtract(11, "months").format("YYYY-MM-DD")
+        console.log(endDate)
+        var guardianURL = "https://content.guardianapis.com/search?q=" + keywordSearch.value + "&from-date=" + beginDate + "&to-date" + endDate + "&api-key=" + guardianAPI;
     }
 
     $.ajax({
@@ -94,22 +98,39 @@ function GuardianSearch() {
             RemoveWords()
         }
         sortWords()
-        // console.log(titleArray)
-        // console.log(displayObj)
     })
 }
 
-function NYTimesSearch() {
+// The Guardian function - PRESENT
+function GuardianSearchPresent() {
+    var guardianAPI = "fac02636-ec64-432c-80e9-88d7553d783c"
+    var guardianURL = "https://content.guardianapis.com/search?q=" + keywordSearch.value + "&api-key=" + guardianAPI;
+
+    $.ajax({
+        url: guardianURL,
+        method: "GET"
+    }).then(function (response) {
+        for (var i = 0; i < 10; i++) {
+            title = response.response.results[i].webTitle
+            RemoveWords()
+        }
+        sortWords()
+    })
+}
+
+// NYT function - PAST
+function NYTimesSearchPast() {
     var APIKey = "2dUYhsd7NHElbbIY9bgav2GCAlGSin97";
     var NYTimesURL;
-    var beginDate;
 
     if ($("#shortTerm")[0].checked === true) {
         beginDate = 20200201;
-        NYTimesURL = "https:api.nytimes.com/svc/search/v2/articlesearch.json?q=" + keywordSearch.value + "&api-key=" + APIKey;
+        endDate = 20200301;
+        NYTimesURL = "https:api.nytimes.com/svc/search/v2/articlesearch.json?q=" + keywordSearch.value + "&begin_date=" + beginDate + "&end_date=" + endDate + "&api-key=" + APIKey;
     } else {
         beginDate = moment().format("YYYYMMDD") - 10000;
-        queryURL = "https:api.nytimes.com/svc/search/v2/articlesearch.json?q=" + keywordSearch.value + "&api-key=" + APIKey;
+        endDate = beginDate + 100;
+        queryURL = "https:api.nytimes.com/svc/search/v2/articlesearch.json?q=" + keywordSearch.value + "&begin_date=" + beginDate + "&end_date=" + endDate + "&api-key=" + APIKey;
     }
     $.ajax({
         url: NYTimesURL,
@@ -120,10 +141,38 @@ function NYTimesSearch() {
             RemoveWords()
         }
         sortWords()
-        // console.log(titleArray)
-        // console.log(displayObj)
     })
 }
 
-// $("#searchBtn").on("click", GuardianSearch)
-$("#searchBtn").on("click", NYTimesSearch);
+// NYT function - PRESENT
+function NYTimesSearchPresent() {
+    var APIKey = "2dUYhsd7NHElbbIY9bgav2GCAlGSin97";
+    var NYTimesURL;
+    beginDate = 20200315;
+    queryURL = "https:api.nytimes.com/svc/search/v2/articlesearch.json?q=" + keywordSearch.value + "&begin_date=" + beginDate + "&api-key=" + APIKey;
+    $.ajax({
+        url: NYTimesURL,
+        method: "GET"
+    }).then(function (response) {
+        for (var i = 0; i < 10; i++) {
+            title = response.response.docs[i].headline.print_headline
+            RemoveWords()
+        }
+        sortWords()
+        console.log(titleArray)
+        console.log(displayObj)
+    })
+}
+
+function GuardianSearch() {
+    GuardianSearchPast()
+    GuardianSearchPresent()
+}
+
+function NYTimesSearch() {
+    NYTimesSearchPast()
+    NYTimesSearchPresent()
+}
+
+$("#searchBtn").on("click", GuardianSearchPast)
+// $("#searchBtn").on("click", NYTimesSearch);
