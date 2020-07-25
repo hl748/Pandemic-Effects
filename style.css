@@ -9,10 +9,6 @@
     @extend .blue, .lighten-4;
 }
 
-.postCOVID {
-
-}
-
 .first-most {
     color: red;
 }
@@ -42,7 +38,7 @@
 }
 
 .eighth-most {
-    color: lightpink;
+    color: lightcyan
 }
 
 .ninth-most {
@@ -50,12 +46,12 @@
 }
 
 .tenth-most {
-    color: slategray
+    color: brown;
 }
 
-
-
-
+.radioButton:hover {
+    font-weight: bold;
+}
 
 
 
