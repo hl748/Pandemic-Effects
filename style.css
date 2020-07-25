@@ -1,13 +1,13 @@
+body {
+    background-color: lightslategray;
+}
+
 .nav-wrapper {
     background-color: rgb(12, 99, 99)
 }
 
 .preCOVID {
     @extend .blue, .lighten-4;
-}
-
-.postCOVID {
-
 }
 
 .first-most {
@@ -39,7 +39,7 @@
 }
 
 .eighth-most {
-    color: lightpink;
+    color: lightcyan
 }
 
 .ninth-most {
@@ -47,12 +47,12 @@
 }
 
 .tenth-most {
-    color: slategray
+    color: brown;
 }
 
-
-
-
+.radioButton:hover {
+    font-weight: bold;
+}
 
 
 
