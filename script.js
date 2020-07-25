@@ -3,7 +3,7 @@ $(document).ready(function () {
     $('select').formSelect();
     $('.carousel').carousel();
 });
-  
+
 $(".current-date").text(moment().format("LLL"));
 
 // Global variable
@@ -35,7 +35,6 @@ function sortWords() {
     titleArray.sort();
     var current = null;
     var cnt = 0;
-    localStorage.setItem("titleArray", JSON.stringify(titleArray));
     for (var i = 0; i <= titleArray.length; i++) {
         if (titleArray[i] != current) {
             if (cnt > 0) {
@@ -47,12 +46,27 @@ function sortWords() {
             cnt++;
         }
     }
-    var maxValue = 0;
-    for (var [key, value] of Object.entries(displayObj)) {
-        if (`${value}` > maxValue) {
-            maxValue = `${value}`;
-        }
-        console.log(`${key}: ${value}`)
+
+    // var maxValue = 0;
+    // var maxKey;
+    var sortableDisplayObj = [];
+    // for (var [key, value] of Object.entries(displayObj)) {
+    //     if (`${value}` > maxValue) {
+    //         maxValue = `${value}`;
+    //         maxKey = `${key}`;
+    //     }
+    // }
+
+    for (var keyword in displayObj) {
+        sortableDisplayObj.push([keyword, displayObj[keyword]]);
+    }
+
+    sortableDisplayObj.sort(function (a, b) {
+        return b[1] - a[1];
+    })
+
+    for (var i = 0; i < 10; i++) {
+        $("<p>").text(sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).appendTo($("#preCOVID"));
     }
 
     if (cnt > 0) {
@@ -62,53 +76,49 @@ function sortWords() {
 
 // The Guardian function - PAST
 function GuardianSearchPast() {
-  var guardianAPI = "fac02636-ec64-432c-80e9-88d7553d783c"
-  
-  if ($("#shortTerm")[0].checked === true) {
-    var guardianURL = "https://content.guardianapis.com/search?q=" + keywordSearch.value + "&from-date=2020-02-01&to-date=2020-03-01&api-key=" + guardianAPI;
+    var guardianAPI = "fac02636-ec64-432c-80e9-88d7553d783c"
 
-  } else {
-    beginDate = moment().subtract(1,"years").format("YYYY-MM-DD") 
-    console.log(beginDate)
-    endDate = moment().subtract(11,"months").format("YYYY-MM-DD") 
-    console.log(endDate)
-    var guardianURL = "https://content.guardianapis.com/search?q=" + keywordSearch.value + "&from-date=" + beginDate + "&to-date" + endDate +"&api-key=" + guardianAPI;
-  }
+    if ($("#shortTerm")[0].checked === true) {
+        var guardianURL = "https://content.guardianapis.com/search?q=" + keywordSearch.value + "&from-date=2020-02-01&to-date=2020-03-01&api-key=" + guardianAPI;
 
-  $.ajax({
-    url: guardianURL,
-    method: "GET"
-  }).then(function (response) {
-    for (var i = 0; i < 10; i++) {
-      title = response.response.results[i].webTitle
-      RemoveWords()
+    } else {
+        beginDate = moment().subtract(1, "years").format("YYYY-MM-DD")
+        console.log(beginDate)
+        endDate = moment().subtract(11, "months").format("YYYY-MM-DD")
+        console.log(endDate)
+        var guardianURL = "https://content.guardianapis.com/search?q=" + keywordSearch.value + "&from-date=" + beginDate + "&to-date" + endDate + "&api-key=" + guardianAPI;
     }
-    sortWords()
-    console.log(titleArray)
-    console.log(displayObj)
-  })
+
+    $.ajax({
+        url: guardianURL,
+        method: "GET"
+    }).then(function (response) {
+        for (var i = 0; i < 10; i++) {
+            title = response.response.results[i].webTitle
+            RemoveWords()
+        }
+        sortWords()
+    })
 }
 
 // The Guardian function - PRESENT
 function GuardianSearchPresent() {
     var guardianAPI = "fac02636-ec64-432c-80e9-88d7553d783c"
     var guardianURL = "https://content.guardianapis.com/search?q=" + keywordSearch.value + "&api-key=" + guardianAPI;
-    
-    $.ajax({
-      url: guardianURL,
-      method: "GET"
-    }).then(function (response) {
-      for (var i = 0; i < 10; i++) {
-        title = response.response.results[i].webTitle
-        RemoveWords()
-      }
-      sortWords()
-      console.log(titleArray)
-      console.log(displayObj)
-    })
-  }
 
-  // NYT function - PAST
+    $.ajax({
+        url: guardianURL,
+        method: "GET"
+    }).then(function (response) {
+        for (var i = 0; i < 10; i++) {
+            title = response.response.results[i].webTitle
+            RemoveWords()
+        }
+        sortWords()
+    })
+}
+
+// NYT function - PAST
 function NYTimesSearchPast() {
     var APIKey = "2dUYhsd7NHElbbIY9bgav2GCAlGSin97";
     var NYTimesURL;
@@ -116,11 +126,11 @@ function NYTimesSearchPast() {
     if ($("#shortTerm")[0].checked === true) {
         beginDate = 20200201;
         endDate = 20200301;
-        NYTimesURL = "https:api.nytimes.com/svc/search/v2/articlesearch.json?q=" + keywordSearch.value +"&begin_date=" + beginDate+ "&end_date="+ endDate+ "&api-key=" + APIKey;
+        NYTimesURL = "https:api.nytimes.com/svc/search/v2/articlesearch.json?q=" + keywordSearch.value + "&begin_date=" + beginDate + "&end_date=" + endDate + "&api-key=" + APIKey;
     } else {
         beginDate = moment().format("YYYYMMDD") - 10000;
         endDate = beginDate + 100;
-        queryURL = "https:api.nytimes.com/svc/search/v2/articlesearch.json?q=" + keywordSearch.value +"&begin_date=" + beginDate+ "&end_date="+ endDate+"&api-key=" + APIKey;
+        queryURL = "https:api.nytimes.com/svc/search/v2/articlesearch.json?q=" + keywordSearch.value + "&begin_date=" + beginDate + "&end_date=" + endDate + "&api-key=" + APIKey;
     }
     $.ajax({
         url: NYTimesURL,
@@ -131,17 +141,15 @@ function NYTimesSearchPast() {
             RemoveWords()
         }
         sortWords()
-        console.log(titleArray)
-        console.log(displayObj)
     })
 }
 
-  // NYT function - PRESENT
-  function NYTimesSearchPresent() {
+// NYT function - PRESENT
+function NYTimesSearchPresent() {
     var APIKey = "2dUYhsd7NHElbbIY9bgav2GCAlGSin97";
     var NYTimesURL;
     beginDate = 20200315;
-    queryURL = "https:api.nytimes.com/svc/search/v2/articlesearch.json?q=" + keywordSearch.value +"&begin_date=" + beginDate+ "&api-key=" + APIKey;
+    queryURL = "https:api.nytimes.com/svc/search/v2/articlesearch.json?q=" + keywordSearch.value + "&begin_date=" + beginDate + "&api-key=" + APIKey;
     $.ajax({
         url: NYTimesURL,
         method: "GET"
@@ -156,12 +164,12 @@ function NYTimesSearchPast() {
     })
 }
 
-function GuardianSearch () {
-    GuardianSearchPast ()
-    GuardianSearchPresent ()
+function GuardianSearch() {
+    GuardianSearchPast()
+    GuardianSearchPresent()
 }
 
-function NYTimesSearch () {
+function NYTimesSearch() {
     NYTimesSearchPast()
     NYTimesSearchPresent()
 }
