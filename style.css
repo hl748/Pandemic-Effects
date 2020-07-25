@@ -1,9 +1,8 @@
-body {
-    background-color: whitesmoke;
-}
-
-.nav-wrapper {
-    background-color: rgb(12, 99, 99)
+.s12 {
+    background-color: rgb(12, 99, 99);
+    color: white;
+    text-align: center;
+    text-decoration: wheat;  
 }
 
 .preCOVID {
