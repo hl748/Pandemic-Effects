@@ -3,7 +3,7 @@ $(document).ready(function () {
     $('select').formSelect();
     $('.carousel').carousel();
 });
-
+  
 $(".current-date").text(moment().format("LLL"));
 
 // Global variable
