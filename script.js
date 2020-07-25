@@ -4,25 +4,30 @@ $(document).ready(function () {
     $('.carousel').carousel();
 });
 
+$("#newsSource").on("click", function() {
+    console.log($("#newsSource").value);
+})
+
 $(".current-date").text(moment().format("LLL"));
 
 // Global variable
 var keywordSearch = $("#keywordSearch")[0];
 
 // new global variables
-var title
-var word
-var titleArray = []
-var removeWords = ['the', 'a', 'an', 'some', 'saw', 'time', 'really', 'today', 'dont', 'do', 'of', 'is', 'are', 'going', 'to', 'got', 'didnt', 'cant', 'can', 'will', 'finally', 'going', 'new', 'wait', 'think', 'just', 'see', 'one', 'still', 'might', 'shall', 'in', 'for', 'and', "", 'be', 'as', 'arent', 'how', 'with', 'its', keywordSearch.value.toLowerCase()]
+var title;
+var word;
+var titleArray = [];
+var removeWords = ['the', 'a', 'an', 'some', 'saw', 'time', 'really', 'today', 'dont', 'do', 'of', 'is', 'are', 'going', 'to', 'got', 'didnt', 'cant', 'can', 'will', 'finally', 'going', 'new', 'wait', 'think', 'just', 'see', 'one', 'still', 'might', 'shall', 'in', 'for', 'and', "", 'be', 'as', 'arent', 'how', 'with', 'its', keywordSearch.value.toLowerCase()];
 var beginDate;
 var endDate;
 var displayObj = {};
+var sortableDisplayObj = [];
 
 // function to remove words
 function RemoveWords() {
     if (title !== null) {
-        title = title.replace(/[^a-zA-Z ]/g, "").toLowerCase()
-        word = title.split(" ")
+        title = title.replace(/[^a-zA-Z ]/g, "").toLowerCase();
+        word = title.split(" ");
         word = word.filter(function (x) {
             return !removeWords.includes(x);
         });
@@ -47,31 +52,17 @@ function sortWords() {
         }
     }
 
-    // var maxValue = 0;
-    // var maxKey;
-    var sortableDisplayObj = [];
-    // for (var [key, value] of Object.entries(displayObj)) {
-    //     if (`${value}` > maxValue) {
-    //         maxValue = `${value}`;
-    //         maxKey = `${key}`;
-    //     }
-    // }
-
     for (var keyword in displayObj) {
         sortableDisplayObj.push([keyword, displayObj[keyword]]);
     }
-
     sortableDisplayObj.sort(function (a, b) {
         return b[1] - a[1];
     })
 
-    for (var i = 0; i < 10; i++) {
-        $("<p>").text(sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).appendTo($("#preCOVID"));
-    }
-
     if (cnt > 0) {
     }
 }
+
 // Find all the keys in key/values with max values
 
 // The Guardian function - PAST
@@ -82,10 +73,10 @@ function GuardianSearchPast() {
         var guardianURL = "https://content.guardianapis.com/search?q=" + keywordSearch.value + "&from-date=2020-02-01&to-date=2020-03-01&api-key=" + guardianAPI;
 
     } else {
-        beginDate = moment().subtract(1, "years").format("YYYY-MM-DD")
-        console.log(beginDate)
-        endDate = moment().subtract(11, "months").format("YYYY-MM-DD")
-        console.log(endDate)
+        beginDate = moment().subtract(1, "years").format("YYYY-MM-DD");
+        console.log(beginDate);
+        endDate = moment().subtract(11, "months").format("YYYY-MM-DD");
+        console.log(endDate);
         var guardianURL = "https://content.guardianapis.com/search?q=" + keywordSearch.value + "&from-date=" + beginDate + "&to-date" + endDate + "&api-key=" + guardianAPI;
     }
 
@@ -94,10 +85,14 @@ function GuardianSearchPast() {
         method: "GET"
     }).then(function (response) {
         for (var i = 0; i < 10; i++) {
-            title = response.response.results[i].webTitle
-            RemoveWords()
+            title = response.response.results[i].webTitle;
+            RemoveWords();
         }
-        sortWords()
+        sortWords();
+        for (var i = 0; i < 10; i++) {
+            $("<p>").text(sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).appendTo($("#preCOVID"));
+        }
+        sortableDisplayObj = [];
     })
 }
 
@@ -111,10 +106,14 @@ function GuardianSearchPresent() {
         method: "GET"
     }).then(function (response) {
         for (var i = 0; i < 10; i++) {
-            title = response.response.results[i].webTitle
-            RemoveWords()
+            title = response.response.results[i].webTitle;
+            RemoveWords();
         }
-        sortWords()
+        sortWords();
+        for (var i = 0; i < 10; i++) {
+            $("<p>").text(sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).appendTo($("#postCOVID"));
+        }
+        sortableDisplayObj = [];
     })
 }
 
@@ -137,10 +136,14 @@ function NYTimesSearchPast() {
         method: "GET"
     }).then(function (response) {
         for (var i = 0; i < 10; i++) {
-            title = response.response.docs[i].headline.print_headline
-            RemoveWords()
+            title = response.response.docs[i].headline.print_headline;
+            RemoveWords();
         }
-        sortWords()
+        sortWords();
+        for (var i = 0; i < 10; i++) {
+            $("<p>").text(sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).appendTo($("#preCOVID"));
+        }
+        sortableDisplayObj = [];
     })
 }
 
@@ -155,24 +158,26 @@ function NYTimesSearchPresent() {
         method: "GET"
     }).then(function (response) {
         for (var i = 0; i < 10; i++) {
-            title = response.response.docs[i].headline.print_headline
-            RemoveWords()
+            title = response.response.docs[i].headline.print_headline;
+            RemoveWords();
         }
-        sortWords()
-        console.log(titleArray)
-        console.log(displayObj)
+        sortWords();
+        for (var i = 0; i < 10; i++) {
+            $("<p>").text(sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).appendTo($("#postCOVID"));
+        }
+        sortableDisplayObj = [];
     })
 }
 
 function GuardianSearch() {
-    GuardianSearchPast()
-    GuardianSearchPresent()
+    GuardianSearchPast();
+    GuardianSearchPresent();
 }
 
 function NYTimesSearch() {
-    NYTimesSearchPast()
-    NYTimesSearchPresent()
+    NYTimesSearchPast();
+    NYTimesSearchPresent();
 }
 
-$("#searchBtn").on("click", GuardianSearchPast)
+$("#searchBtn").on("click", GuardianSearch);
 // $("#searchBtn").on("click", NYTimesSearch);
