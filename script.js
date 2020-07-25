@@ -3,7 +3,7 @@ $(document).ready(function () {
     $('select').formSelect();
     $('.carousel').carousel();
 });
-  
+
 $(".current-date").text(moment().format("LLL"));
 
 // Global variable
@@ -34,7 +34,6 @@ function sortWords() {
     titleArray.sort();
     var current = null;
     var cnt = 0;
-    localStorage.setItem("titleArray", JSON.stringify(titleArray));
     for (var i = 0; i <= titleArray.length; i++) {
         if (titleArray[i] != current) {
             if (cnt > 0) {
@@ -46,12 +45,27 @@ function sortWords() {
             cnt++;
         }
     }
-    var maxValue = 0;
-    for (var [key, value] of Object.entries(displayObj)) {
-        if (`${value}` > maxValue) {
-            maxValue = `${value}`;
-        }
-        console.log(`${key}: ${value}`)
+
+    // var maxValue = 0;
+    // var maxKey;
+    var sortableDisplayObj = [];
+    // for (var [key, value] of Object.entries(displayObj)) {
+    //     if (`${value}` > maxValue) {
+    //         maxValue = `${value}`;
+    //         maxKey = `${key}`;
+    //     }
+    // }
+
+    for (var keyword in displayObj) {
+        sortableDisplayObj.push([keyword, displayObj[keyword]]);
+    }
+
+    sortableDisplayObj.sort(function (a, b) {
+        return b[1] - a[1];
+    })
+
+    for (var i = 0; i < 10; i++) {
+        $("<p>").text(sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).appendTo($("#preCOVID"));
     }
 
     if (cnt > 0) {
@@ -61,28 +75,28 @@ function sortWords() {
 
 // The Guardian function
 function GuardianSearch() {
-  var guardianAPI = "fac02636-ec64-432c-80e9-88d7553d783c"
-  var beginDate;
-  if ($("#shortTerm")[0].checked === true) {
-    var guardianURL = "https://content.guardianapis.com/search?q=" + keywordSearch.value + "&from-date=2020-02-01&api-key=" + guardianAPI;
+    var guardianAPI = "fac02636-ec64-432c-80e9-88d7553d783c"
+    var beginDate;
+    if ($("#shortTerm")[0].checked === true) {
+        var guardianURL = "https://content.guardianapis.com/search?q=" + keywordSearch.value + "&from-date=2020-02-01&api-key=" + guardianAPI;
 
-  } else {
-    beginDate = moment().format("YYYYMMDD") - 10000
-    var guardianURL = "https://content.guardianapis.com/search?q=" + keywordSearch.value + "&from-date=" + beginDate + "&api-key=" + guardianAPI;
-  }
-
-  $.ajax({
-    url: guardianURL,
-    method: "GET"
-  }).then(function (response) {
-    for (var i = 0; i < 10; i++) {
-      title = response.response.results[i].webTitle
-      RemoveWords()
+    } else {
+        beginDate = moment().format("YYYYMMDD") - 10000
+        var guardianURL = "https://content.guardianapis.com/search?q=" + keywordSearch.value + "&from-date=" + beginDate + "&api-key=" + guardianAPI;
     }
-    sortWords()
-    console.log(titleArray)
-    console.log(displayObj)
-  })
+
+    $.ajax({
+        url: guardianURL,
+        method: "GET"
+    }).then(function (response) {
+        for (var i = 0; i < 10; i++) {
+            title = response.response.results[i].webTitle
+            RemoveWords()
+        }
+        sortWords()
+        // console.log(titleArray)
+        // console.log(displayObj)
+    })
 }
 
 function NYTimesSearch() {
@@ -106,8 +120,8 @@ function NYTimesSearch() {
             RemoveWords()
         }
         sortWords()
-        console.log(titleArray)
-        console.log(displayObj)
+        // console.log(titleArray)
+        // console.log(displayObj)
     })
 }
 
