@@ -34,7 +34,6 @@ function sortWords() {
     titleArray.sort();
     var current = null;
     var cnt = 0;
-    localStorage.setItem("titleArray", JSON.stringify(titleArray));
     for (var i = 0; i <= titleArray.length; i++) {
         if (titleArray[i] != current) {
             if (cnt > 0) {
@@ -46,28 +45,28 @@ function sortWords() {
             cnt++;
         }
     }
-    var maxValue = 0;
-    var maxKey;
+
+    // var maxValue = 0;
+    // var maxKey;
     var sortableDisplayObj = [];
-    for (var [key, value] of Object.entries(displayObj)) {
-        if (`${value}` > maxValue) {
-            maxValue = `${value}`;
-            maxKey = `${key}`;
-        }
-        console.log(`${key}: ${value}`);
-        // console.log(displayObj);
-    }
-    
+    // for (var [key, value] of Object.entries(displayObj)) {
+    //     if (`${value}` > maxValue) {
+    //         maxValue = `${value}`;
+    //         maxKey = `${key}`;
+    //     }
+    // }
+
     for (var keyword in displayObj) {
-        sortableDisplayObj.push([keyword], displayObj[keyword]);
+        sortableDisplayObj.push([keyword, displayObj[keyword]]);
     }
+
     sortableDisplayObj.sort(function (a, b) {
-        return a[1] - b[1];
+        return b[1] - a[1];
     })
-    console.log(sortableDisplayObj);
-    $("<p>").text(maxKey).appendTo($("#preCOVID"))
-    // console.log(maxValue);
-    // console.log(maxKey);
+
+    for (var i = 0; i < 10; i++) {
+        $("<p>").text(sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).appendTo($("#preCOVID"));
+    }
 
     if (cnt > 0) {
     }
