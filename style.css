@@ -11,6 +11,8 @@
 
 .searchBar  {
     padding-left: 20px;
+    position: relative;
+    bottom: 40px;
        
 }
 label {
@@ -18,11 +20,13 @@ label {
     font-size: 18px;
     font-weight: bold;
     position: relative;
-    top: 10px;   
+    bottom: 150px;
 }
 
 .dropDown{
     padding: 20px;
+    position: relative;
+    bottom: 110px;
 }
 
 .dropDown-header {
@@ -31,11 +35,22 @@ label {
     font-size: 18px;
 }
 
+#keywordSearch {
+    position: relative;
+    bottom: 25px;
+}
+
+#news-selector {
+    position: relative;
+    bottom: 20px;
+}
+
  button{
     position: relative;
-    left: 85px;
-    margin-top: 30px;
+    left: 70px;
+    bottom: 140px;
 }
+
 .carousel {
     
 }
