@@ -4,9 +4,6 @@ $(document).ready(function () {
     $('.carousel').carousel();
 });
 
-$("#newsSource").on("click", function() {
-    console.log($("#newsSource").value);
-})
 
 $(".current-date").text(moment().format("LLL"));
 
@@ -152,7 +149,8 @@ function NYTimesSearchPresent() {
     var APIKey = "2dUYhsd7NHElbbIY9bgav2GCAlGSin97";
     var NYTimesURL;
     beginDate = 20200315;
-    queryURL = "https:api.nytimes.com/svc/search/v2/articlesearch.json?q=" + keywordSearch.value + "&begin_date=" + beginDate + "&api-key=" + APIKey;
+    endDate = moment().format("YYYYMMDD");
+    NYTimesURL = "https:api.nytimes.com/svc/search/v2/articlesearch.json?q=" + keywordSearch.value + "&begin_date=" + beginDate + "&end_date=" + endDate + "&api-key=" + APIKey;
     $.ajax({
         url: NYTimesURL,
         method: "GET"
@@ -177,7 +175,17 @@ function GuardianSearch() {
 function NYTimesSearch() {
     NYTimesSearchPast();
     NYTimesSearchPresent();
+    console.log($("#newsSource")[0].value);
 }
 
-$("#searchBtn").on("click", GuardianSearch);
-// $("#searchBtn").on("click", NYTimesSearch);
+$("#searchBtn").on("click", function () {
+    if ($("#newsSource")[0][0].selected === true && $("#newsSource")[0][1].selected === true) {
+
+    }
+    else if ($("#newsSource")[0][0].selected === true) {
+        NYTimesSearch();
+    }
+    else if ($("#newsSource")[0][1].selected === true) {
+        GuardianSearch();
+    }
+})

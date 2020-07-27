@@ -2,52 +2,55 @@
     background-color: rgb(12, 99, 99);
     color: white;
     text-align: center;
-    text-decoration: wheat;  
+}
+#header {
+    height: 10px;
+    position: relative;
+    bottom: 30px;
 }
 
-.preCOVID {
-    @extend .blue, .lighten-4;
+.searchBar  {
+    padding-left: 20px;
+       
+}
+label {
+    padding-left: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+    top: 10px;   
 }
 
-.first-most {
-    color: red;
+.dropDown{
+    padding: 20px;
 }
 
-.second-most {
-    color: orange;
+.dropDown-header {
+    color: #9E9E9E;
+    font-weight: bold;
+    font-size: 18px;
 }
 
-.third-most {
-    color: yellow;
+ button{
+    position: relative;
+    left: 85px;
+    margin-top: 30px;
+}
+.carousel {
+    
+}
+/* .preCOVID {
+    
 }
 
-.fourth-most{
-    color: lightblue;
+.postCOVID {
+
 }
 
-.fifth-most {
-    color: blue;
-}
+.radioButton:hover {
+    
+} */
 
-.sixth-most {
-    color: darkblue;
-}
-
-.seventh-most {
-    color: lightgreen;
-}
-
-.eighth-most {
-    color: lightcyan;
-}
-
-.ninth-most {
-    color: lightsalmon;
-}
-
-.tenth-most {
-    color: brown;
-}
 
 .radioButton:hover {
     font-weight: bold;
