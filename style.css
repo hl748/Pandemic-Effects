@@ -8,18 +8,24 @@ html {
     text-align: center;
     height: 115px;
 }
+
 #header {
     height: 10px;
     position: relative;
     bottom: 30px;
 }
 
+.current-date {
+    position: relative;
+    bottom: 15px;
+}
+
 .searchBar  {
     padding-left: 20px;
     position: relative;
     bottom: 40px;
-       
 }
+
 label {
     padding-left: 10px;
     font-size: 18px;
@@ -65,34 +71,6 @@ label {
     border: rgb(12, 99, 99) 1px solid; 
     text-align: center;
     text-decoration: underline  #9E9E9E;
-    
-    
-}
-
-.radioButton:hover {
-    
-} */
-
-
-.radioButton:hover {
-    font-weight: bold;
-}
-
-#header {
-    height: 8px;
-    position: relative;
-    bottom: 30px;
-}
-
-.carousel {
-    width:300px !important;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.current-date {
-    position: relative;
-    bottom: 15px;
 }
 
 .card-title{
