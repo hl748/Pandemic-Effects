@@ -12,6 +12,8 @@ html {
     height: 10px;
     position: relative;
     bottom: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .searchBar  {
@@ -38,6 +40,7 @@ label {
     color: #9E9E9E;
     font-weight: bold;
     font-size: 18px;
+
 }
 
 #keywordSearch {
@@ -60,6 +63,7 @@ label {
     width: 800px !important;
     margin-left: 150px;
 }
+
 .preCOVID, .postCOVID  { 
     background-color: none;
     border: rgb(12, 99, 99) 1px solid; 
@@ -71,7 +75,7 @@ label {
 
 .radioButton:hover {
     
-} */
+} 
 
 
 .radioButton:hover {
@@ -92,6 +96,14 @@ label {
 .card-title{
     font-weight: bold !important;
     color: #9E9E9E;
+}
+
+.s3 {
+    padding-top: 10px;
+}
+
+#searchPanel {
+    padding-top: 10px;
 }
 
 
