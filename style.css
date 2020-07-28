@@ -55,7 +55,8 @@ label {
 .carousel {
     
 }
-/* .preCOVID {
+
+#preCOVID {
     
 }
 
@@ -65,7 +66,7 @@ label {
 
 .radioButton:hover {
     
-} */
+} 
 
 
 .radioButton:hover {
@@ -89,6 +90,9 @@ label {
     bottom: 15px;
 }
 
+/* .card {
+    margin-left: 55px;
+} */
 
 
 
