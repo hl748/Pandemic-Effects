@@ -84,12 +84,6 @@ label {
     bottom: 30px;
 }
 
-.carousel {
-    width:300px !important;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .current-date {
     position: relative;
     bottom: 15px;
