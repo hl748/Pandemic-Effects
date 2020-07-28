@@ -4,7 +4,6 @@ $(document).ready(function () {
     $('.carousel').carousel();
 });
 
-
 $(".current-date").text(moment().format("LLL"));
 
 // Global variable
@@ -62,7 +61,7 @@ function sortWords() {
 
 // Find all the keys in key/values with max values
 
-// The Guardian function - PAST
+// The Guardian function - PAST - for preCOVID Section
 function GuardianSearchPast() {
     var guardianAPI = "fac02636-ec64-432c-80e9-88d7553d783c"
 
@@ -81,19 +80,19 @@ function GuardianSearchPast() {
         url: guardianURL,
         method: "GET"
     }).then(function (response) {
-        for (var i = 0; i < 10; i++) {
+        for (var i = 0; i < response.response.results.length; i++) {
             title = response.response.results[i].webTitle;
             RemoveWords();
         }
         sortWords();
-        for (var i = 0; i < 10; i++) {
-            $("<p>").text(sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).appendTo($("#preCOVID"));
+        for (var i = 0; i < sortableDisplayObj.length; i++) {
+            $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).appendTo($("#preCOVID"));
         }
         sortableDisplayObj = [];
     })
 }
 
-// The Guardian function - PRESENT
+// The Guardian function - PRESENT - for postCOVID Section
 function GuardianSearchPresent() {
     var guardianAPI = "fac02636-ec64-432c-80e9-88d7553d783c"
     var guardianURL = "https://content.guardianapis.com/search?q=" + keywordSearch.value + "&api-key=" + guardianAPI;
@@ -102,19 +101,19 @@ function GuardianSearchPresent() {
         url: guardianURL,
         method: "GET"
     }).then(function (response) {
-        for (var i = 0; i < 10; i++) {
+        for (var i = 0; i < response.response.results.length; i++) {
             title = response.response.results[i].webTitle;
             RemoveWords();
         }
         sortWords();
-        for (var i = 0; i < 10; i++) {
-            $("<p>").text(sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).appendTo($("#postCOVID"));
+        for (var i = 0; i < sortableDisplayObj.length; i++) {
+            $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).appendTo($("#postCOVID"));
         }
         sortableDisplayObj = [];
     })
 }
 
-// NYT function - PAST
+// NYT function - PAST - for preCOVID Section
 function NYTimesSearchPast() {
     var APIKey = "2dUYhsd7NHElbbIY9bgav2GCAlGSin97";
     var NYTimesURL;
@@ -126,25 +125,25 @@ function NYTimesSearchPast() {
     } else {
         beginDate = moment().format("YYYYMMDD") - 10000;
         endDate = beginDate + 100;
-        queryURL = "https:api.nytimes.com/svc/search/v2/articlesearch.json?q=" + keywordSearch.value + "&begin_date=" + beginDate + "&end_date=" + endDate + "&api-key=" + APIKey;
+        NYTimesURL = "https:api.nytimes.com/svc/search/v2/articlesearch.json?q=" + keywordSearch.value + "&begin_date=" + beginDate + "&end_date=" + endDate + "&api-key=" + APIKey;
     }
     $.ajax({
         url: NYTimesURL,
         method: "GET"
     }).then(function (response) {
-        for (var i = 0; i < 10; i++) {
+        for (var i = 0; i < response.response.docs.length; i++) {
             title = response.response.docs[i].headline.print_headline;
             RemoveWords();
         }
         sortWords();
-        for (var i = 0; i < 10; i++) {
-            $("<p>").text(sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).appendTo($("#preCOVID"));
+        for (var i = 0; i < sortableDisplayObj.length; i++) {
+            $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).appendTo($("#preCOVID"));
         }
         sortableDisplayObj = [];
     })
 }
 
-// NYT function - PRESENT
+// NYT function - PRESENT - for postCOVID Section
 function NYTimesSearchPresent() {
     var APIKey = "2dUYhsd7NHElbbIY9bgav2GCAlGSin97";
     var NYTimesURL;
@@ -155,13 +154,13 @@ function NYTimesSearchPresent() {
         url: NYTimesURL,
         method: "GET"
     }).then(function (response) {
-        for (var i = 0; i < 10; i++) {
+        for (var i = 0; i < response.response.docs.length; i++) {
             title = response.response.docs[i].headline.print_headline;
             RemoveWords();
         }
         sortWords();
-        for (var i = 0; i < 10; i++) {
-            $("<p>").text(sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).appendTo($("#postCOVID"));
+        for (var i = 0; i < sortableDisplayObj.length; i++) {
+            $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).appendTo($("#postCOVID"));
         }
         sortableDisplayObj = [];
     })
@@ -175,17 +174,20 @@ function GuardianSearch() {
 function NYTimesSearch() {
     NYTimesSearchPast();
     NYTimesSearchPresent();
-    console.log($("#newsSource")[0].value);
 }
 
 $("#searchBtn").on("click", function () {
     if ($("#newsSource")[0][0].selected === true && $("#newsSource")[0][1].selected === true) {
-
+        $(".commonWords").empty();
     }
     else if ($("#newsSource")[0][0].selected === true) {
+        $("<img>").attr("src","https://1000logos.net/wp-content/uploads/2017/04/ny-times-logo.jpg").attr("id","NYTimesLogo").appendTo(".card-title");
+        $(".commonWords").empty();
         NYTimesSearch();
     }
     else if ($("#newsSource")[0][1].selected === true) {
+        $("<img>").attr("src","https://www.daniellecitron.com/wp-content/uploads/2016/05/the-guardian-logo.jpg").attr("id","guardianLogo").appendTo(".card-title");
+        $(".commonWords").empty();
         GuardianSearch();
     }
 })
