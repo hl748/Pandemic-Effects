@@ -1,3 +1,7 @@
+html {
+    font-family: GillSans, Calibri, Trebuchet, sans-serif;
+ }
+
 .s12 {
     background-color: rgb(12, 99, 99);
     color: white;
@@ -52,15 +56,17 @@ label {
     bottom: 140px;
 }
 
-.carousel {
-    
+.carousel, .carusel-item {
+    width: 800px !important;
+    margin-left: 150px;
 }
-/* .preCOVID {
+.preCOVID, .postCOVID  { 
+    background-color: none;
+    border: rgb(12, 99, 99) 1px solid; 
+    text-align: center;
+    text-decoration: underline  #9E9E9E;
     
-}
-
-.postCOVID {
-
+    
 }
 
 .radioButton:hover {
@@ -87,6 +93,11 @@ label {
 .current-date {
     position: relative;
     bottom: 15px;
+}
+
+.card-title{
+    font-weight: bold !important;
+    color: #9E9E9E;
 }
 
 
