@@ -67,7 +67,6 @@ label {
 .carousel, .carusel-item {
     width: 800px !important;
     margin-left: 150px;
-    height: fit-content;
 }
 
 .preCOVID, .postCOVID  { 
@@ -85,69 +84,6 @@ label {
 #searchPanel {
     padding-top: 10px;
 }
-
-#guardianLogo {
-    height: 65px;
-    width: 65px;
-    position: relative;
-    left: 200px;
-    top: 0;
-}
-
-#NYTimesLogo {
-    height: 85px;
-    width: 85px;
-    position: relative;
-    left: 180px;
-    top: 0;
-}
-
-#word1{
-    color: #ecd60ee5
-}
-
-#word2{
-    color: #f0c859
-}
-
-#word3{
-    color: #e0c33e
-}
-
-#word4{
-    color: #fcad46
-}
-
-#word5{
-    color: #fd8d3c
-}
-
-#word6{
-    color: #fc4e2a
-}
-
-#word7{
-    color: #e31a1c
-}
-
-#word8{
-    color: #bd0026
-}
-
-#word9{
-    color:#800026
-}
-
-#word10{
-    color: #680321
-}
-
-
-
-
-
-
-
 
 
 
