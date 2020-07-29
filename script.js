@@ -1,4 +1,4 @@
-// Loading the Drop-down list and the Carouselgut
+// Loading the Drop-down list and the Carousel
 $(document).ready(function () {
     $('select').formSelect();
     $(".carousel").carousel({
@@ -6,7 +6,7 @@ $(document).ready(function () {
     });
     function autoplay() {
         $(".carousel").carousel("next");
-        setTimeout(autoplay, 5500);
+        setTimeout(autoplay,5500);
     }
     autoplay();
 });
@@ -16,11 +16,8 @@ $(".current-date").text(moment().format("LLL"));
 $("#preCOVID").addClass("hide");
 $("#postCOVID").addClass("hide");
 
-
-// Global variable
+// Global variables
 var keywordSearch = $("#keywordSearch")[0];
-
-// new global variables
 var title;
 var word;
 var titleArray = [];
@@ -99,7 +96,7 @@ function GuardianSearchPast() {
         }
 
         sortWords();
-        for (var i = 0; i < sortableDisplayObj.length; i++) {
+        for (var i = 0; i < 10; i++) {
             $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).attr("id", "word" + (i+1)).appendTo($("#preCOVID"));
         }
     })
@@ -150,7 +147,7 @@ function NYTimesSearchPast() {
         }
         sortWords();
         for (var i = 0; i < 10; i++) {
-            $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).attr("id", (i + 1) + "word").appendTo($("#preCOVID"));
+            $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).attr("id", "word" + (i + 1)).appendTo($("#preCOVID"));
         }
     })
 }
@@ -173,7 +170,7 @@ function NYTimesSearchPresent() {
         }
         sortWords();
         for (var i = 0; i < 10; i++) {
-            $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).attr("id", (i + 1) + "word").appendTo($("#postCOVID"));
+            $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).attr("id", "word" + (i + 1)).appendTo($("#postCOVID"));
         }
     })
 }
@@ -196,7 +193,7 @@ $(".guardianLogos").addClass("hide");
 $("#searchBtn").on("click", function () {
     $("#preCOVID").removeClass("hide");
     $("#postCOVID").removeClass("hide");
-    $(".carousel").addClass("hide");
+    // $(".carousel").addClass("hide");
     $(".commonWords").empty();
 
     if ($("#newsSource")[0][0].selected === true && $("#newsSource")[0][1].selected === true) {
