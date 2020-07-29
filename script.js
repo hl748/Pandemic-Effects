@@ -193,7 +193,7 @@ $(".guardianLogos").addClass("hide");
 $("#searchBtn").on("click", function () {
     $("#preCOVID").removeClass("hide");
     $("#postCOVID").removeClass("hide");
-    // $(".carousel").addClass("hide");
+    $(".carousel").addClass("hide");
     $(".commonWords").empty();
 
     if ($("#newsSource")[0][0].selected === true && $("#newsSource")[0][1].selected === true) {
