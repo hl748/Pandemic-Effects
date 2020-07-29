@@ -97,7 +97,7 @@ function GuardianSearchPast() {
         }
         sortWords();
         for (var i = 0; i < sortableDisplayObj.length; i++) {
-            $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).attr("id", (i + 1) + "word").appendTo($("#preCOVID"));
+            $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).attr("id", "word" + (i+1)).appendTo($("#preCOVID"));
         }
         sortableDisplayObj = [];
     })
@@ -118,7 +118,7 @@ function GuardianSearchPresent() {
         }
         sortWords();
         for (var i = 0; i < sortableDisplayObj.length; i++) {
-            $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).attr("id", (i + 1) + "word").appendTo($("#postCOVID"));
+            $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).attr("id", "word" + (i + 1)).appendTo($("#postCOVID"));
         }
         sortableDisplayObj = [];
     })
@@ -171,7 +171,7 @@ function NYTimesSearchPresent() {
         }
         sortWords();
         for (var i = 0; i < sortableDisplayObj.length; i++) {
-            $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).attr("id", (i + 1) + "word").appendTo($("#postCOVID"));
+            $("<p>").addClass("commonWords YlOrRd").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).attr("id", (i + 1) + "word").appendTo($("#postCOVID"));
         }
         sortableDisplayObj = [];
     })
@@ -197,12 +197,12 @@ $("#searchBtn").on("click", function () {
     }
     
     else if ($("#newsSource")[0][0].selected === true) {
-            $("<img>").attr("src", "https://static01.nyt.com/vi-assets/images/share/1200x1200_t.png").attr("id", "NYTimesLogo").addClass("logos").appendTo(".card-title");
+            $("<img>").attr("src", "https://cms.groupeditors.com/img/dfd82319-1720-487e-88f2-8ef4f6e1da21.jpg?crop=100,0,500,400&w=400&h=400&scale=both").attr("id", "NYTimesLogo").addClass("logos").appendTo(".card-title");
             NYTimesSearch();
     }
     
     else if ($("#newsSource")[0][1].selected === true) {
-        $("<img>").attr("src", "https://www.daniellecitron.com/wp-content/uploads/2016/05/the-guardian-logo.jpg").attr("id", "guardianLogo").addClass("logos").appendTo(".card-title");
+        $("<img>").attr("src", "https://pbs.twimg.com/profile_images/1175141826870861825/K2qKoGla_400x400.png").attr("id", "guardianLogo").addClass("logos").appendTo(".card-title");
         GuardianSearch();
     }
 })
