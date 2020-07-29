@@ -99,8 +99,8 @@ function GuardianSearchPast() {
         }
 
         sortWords();
-        for (var i = 0; i < 10; i++) {
-            $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).attr("id", (i + 1) + "word").appendTo($("#preCOVID"));
+        for (var i = 0; i < sortableDisplayObj.length; i++) {
+            $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).attr("id", "word" + (i+1)).appendTo($("#preCOVID"));
         }
     })
 }
