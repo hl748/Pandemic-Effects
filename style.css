@@ -72,14 +72,16 @@ label {
 
 .preCOVID, .postCOVID  { 
     background-color: none;
-    border: rgb(12, 99, 99) 1px solid; 
-    text-align: center;
-    text-decoration: underline  #9E9E9E; 
+    border: rgb(12, 99, 99) 2px solid; 
 }
 
 .card-title{
     font-weight: bold !important;
-    color: #9E9E9E;
+    color: #696666;
+    font-size: 20px;
+    position: relative;
+    bottom: 50px;
+    display: inline-block;
 }
 
 #searchPanel {
@@ -87,62 +89,66 @@ label {
 }
 
 #guardianLogo {
-    height: 65px;
-    width: 65px;
+    height: 60px;
+    width: 60px;
     position: relative;
-    left: 200px;
-    top: 0;
+    left: 180px;
+    top: 40px;
 }
 
 #NYTimesLogo {
-    height: 85px;
-    width: 85px;
+    height: 80px;
+    width: 80px;
     position: relative;
     left: 180px;
-    top: 0;
-}
-
-#word1{
-    color: #ecd60ee5
-}
-
-#word2{
-    color: #f0c859
-}
-
-#word3{
-    color: #e0c33e
-}
-
-#word4{
-    color: #fcad46
-}
-
-#word5{
-    color: #fd8d3c
-}
-
-#word6{
-    color: #fc4e2a
-}
-
-#word7{
-    color: #e31a1c
-}
-
-#word8{
-    color: #bd0026
-}
-
-#word9{
-    color:#800026
+    top: 40px;
 }
 
 #word10{
+    color: #ecd60ee5
+}
+
+#word9{
+    color: #f0c859
+}
+
+#word8{
+    color: #e0c33e
+}
+
+#word7{
+    color: #fcad46
+}
+
+#word6{
+    color: #fd8d3c
+}
+
+#word5{
+    color: #fc4e2a
+}
+
+#word4{
+    color: #e31a1c
+}
+
+#word3{
+    color: #bd0026
+}
+
+#word2{
+    color:#800026
+}
+
+#word1{
     color: #680321
 }
 
-
+.commonWords{
+    font-size: 18px;
+    position: relative;
+    bottom: 40px;
+}
 
 
 
