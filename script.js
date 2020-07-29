@@ -44,6 +44,8 @@ function RemoveWords() {
 
 // function to sort and count number of duplicated words
 function sortWords() {
+    displayObj = {};
+    sortableDisplayObj = [];
     titleArray.sort();
     var current = null;
     var cnt = 0;
@@ -58,16 +60,18 @@ function sortWords() {
             cnt++;
         }
     }
-
+    
     for (var keyword in displayObj) {
         sortableDisplayObj.push([keyword, displayObj[keyword]]);
     }
+
     sortableDisplayObj.sort(function (a, b) {
         return b[1] - a[1];
     })
-
+    
     if (cnt > 0) {
     }
+    titleArray = [];
 }
 
 // The Guardian function - PAST - for preCOVID Section
@@ -93,11 +97,11 @@ function GuardianSearchPast() {
             title = response.response.results[i].webTitle;
             RemoveWords();
         }
+
         sortWords();
         for (var i = 0; i < 10; i++) {
             $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).attr("id", (i + 1) + "word").appendTo($("#preCOVID"));
         }
-        sortableDisplayObj = [];
     })
 }
 
@@ -118,7 +122,6 @@ function GuardianSearchPresent() {
         for (var i = 0; i < 10; i++) {
             $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).attr("id", "word" + (i + 1)).appendTo($("#postCOVID"));
         }
-        sortableDisplayObj = [];
     })
 }
 
@@ -136,6 +139,7 @@ function NYTimesSearchPast() {
         endDate = beginDate + 100;
         NYTimesURL = "https:api.nytimes.com/svc/search/v2/articlesearch.json?q=" + keywordSearch.value + "&begin_date=" + beginDate + "&end_date=" + endDate + "&api-key=" + APIKey;
     }
+
     $.ajax({
         url: NYTimesURL,
         method: "GET"
@@ -148,7 +152,6 @@ function NYTimesSearchPast() {
         for (var i = 0; i < 10; i++) {
             $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).attr("id", (i + 1) + "word").appendTo($("#preCOVID"));
         }
-        sortableDisplayObj = [];
     })
 }
 
@@ -159,6 +162,7 @@ function NYTimesSearchPresent() {
     beginDate = 20200315;
     endDate = moment().format("YYYYMMDD");
     NYTimesURL = "https:api.nytimes.com/svc/search/v2/articlesearch.json?q=" + keywordSearch.value + "&begin_date=" + beginDate + "&end_date=" + endDate + "&api-key=" + APIKey;
+
     $.ajax({
         url: NYTimesURL,
         method: "GET"
@@ -171,7 +175,6 @@ function NYTimesSearchPresent() {
         for (var i = 0; i < 10; i++) {
             $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).attr("id", (i + 1) + "word").appendTo($("#postCOVID"));
         }
-        sortableDisplayObj = [];
     })
 }
 
