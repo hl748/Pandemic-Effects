@@ -6,7 +6,7 @@ $(document).ready(function () {
     });
     function autoplay() {
         $(".carousel").carousel("next");
-        setTimeout(autoplay,5500);
+        setTimeout(autoplay, 5500);
     }
     autoplay();
 });
@@ -70,8 +70,6 @@ function sortWords() {
     }
 }
 
-// Find all the keys in key/values with max values
-
 // The Guardian function - PAST - for preCOVID Section
 function GuardianSearchPast() {
     var guardianAPI = "fac02636-ec64-432c-80e9-88d7553d783c"
@@ -96,7 +94,7 @@ function GuardianSearchPast() {
             RemoveWords();
         }
         sortWords();
-        for (var i = 0; i < sortableDisplayObj.length; i++) {
+        for (var i = 0; i < 10; i++) {
             $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).attr("id", (i + 1) + "word").appendTo($("#preCOVID"));
         }
         sortableDisplayObj = [];
@@ -117,8 +115,8 @@ function GuardianSearchPresent() {
             RemoveWords();
         }
         sortWords();
-        for (var i = 0; i < sortableDisplayObj.length; i++) {
-            $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).attr("id", (i + 1) + "word").appendTo($("#postCOVID"));
+        for (var i = 0; i < 10; i++) {
+            $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).attr("id", "word" + (i + 1)).appendTo($("#postCOVID"));
         }
         sortableDisplayObj = [];
     })
@@ -147,7 +145,7 @@ function NYTimesSearchPast() {
             RemoveWords();
         }
         sortWords();
-        for (var i = 0; i < sortableDisplayObj.length; i++) {
+        for (var i = 0; i < 10; i++) {
             $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).attr("id", (i + 1) + "word").appendTo($("#preCOVID"));
         }
         sortableDisplayObj = [];
@@ -170,7 +168,7 @@ function NYTimesSearchPresent() {
             RemoveWords();
         }
         sortWords();
-        for (var i = 0; i < sortableDisplayObj.length; i++) {
+        for (var i = 0; i < 10; i++) {
             $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).attr("id", (i + 1) + "word").appendTo($("#postCOVID"));
         }
         sortableDisplayObj = [];
@@ -187,22 +185,30 @@ function NYTimesSearch() {
     NYTimesSearchPresent();
 }
 
+$("<img>").attr("src", "https://cms.groupeditors.com/img/dfd82319-1720-487e-88f2-8ef4f6e1da21.jpg?crop=100,0,500,400&w=400&h=400&scale=both").attr("id", "NYTimesLogo").addClass("NYTimesLogos").appendTo(".card-title");
+$("<img>").attr("src", "https://pbs.twimg.com/profile_images/1175141826870861825/K2qKoGla_400x400.png").attr("id", "guardianLogo").addClass("guardianLogos").appendTo(".card-title");
+$(".NYTimesLogos").addClass("hide");
+$(".guardianLogos").addClass("hide");
+
 $("#searchBtn").on("click", function () {
     $("#preCOVID").removeClass("hide");
     $("#postCOVID").removeClass("hide");
+    $(".carousel").addClass("hide");
     $(".commonWords").empty();
-    
+
     if ($("#newsSource")[0][0].selected === true && $("#newsSource")[0][1].selected === true) {
-        $(".commonWords").empty();
+
     }
-    
+
     else if ($("#newsSource")[0][0].selected === true) {
-            $("<img>").attr("src", "https://static01.nyt.com/vi-assets/images/share/1200x1200_t.png").attr("id", "NYTimesLogo").addClass("logos").appendTo(".card-title");
-            NYTimesSearch();
+        $(".guardianLogos").addClass("hide");
+        $(".NYTimesLogos").removeClass("hide");
+        NYTimesSearch();
     }
-    
+
     else if ($("#newsSource")[0][1].selected === true) {
-        $("<img>").attr("src", "https://www.daniellecitron.com/wp-content/uploads/2016/05/the-guardian-logo.jpg").attr("id", "guardianLogo").addClass("logos").appendTo(".card-title");
+        $(".NYTimesLogos").addClass("hide");
+        $(".guardianLogos").removeClass("hide");
         GuardianSearch();
     }
 })
