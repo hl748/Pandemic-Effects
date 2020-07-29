@@ -13,6 +13,8 @@ html {
     height: 10px;
     position: relative;
     bottom: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .current-date {
@@ -66,16 +68,21 @@ label {
     width: 800px !important;
     margin-left: 150px;
 }
+
 .preCOVID, .postCOVID  { 
     background-color: none;
     border: rgb(12, 99, 99) 1px solid; 
     text-align: center;
-    text-decoration: underline  #9E9E9E;
+    text-decoration: underline  #9E9E9E; 
 }
 
 .card-title{
     font-weight: bold !important;
     color: #9E9E9E;
+}
+
+#searchPanel {
+    padding-top: 10px;
 }
 
 
