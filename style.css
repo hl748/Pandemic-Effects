@@ -22,6 +22,10 @@ html {
     bottom: 15px;
 }
 
+#searchPanel {
+    padding-top: 10px;
+}
+
 .searchBar  {
     padding-left: 20px;
     position: relative;
@@ -64,41 +68,47 @@ label {
     bottom: 140px;
 }
 
-.carousel, .carusel-item {
+.carousel {
     width: 800px !important;
-    margin-left: 150px;
+    margin-left: 140px;
     height: fit-content;
 }
 
-.preCOVID, .postCOVID  { 
+.card-panel, .card {
+    box-shadow: none;
+}
+
+#preCOVID, #postCOVID  { 
     background-color: none;
-    border: rgb(12, 99, 99) 2px solid; 
+    border: rgb(12, 99, 99) 2px solid;
 }
 
 .card-title{
     font-weight: bold !important;
     color: #696666;
-    font-size: 20px;
-    position: relative;
-    bottom: 50px;
-    display: inline-block;
+    bottom: 10px;
+    display: inline !important;
+    max-height: 100%;
+    overflow: auto;
 }
 
-#searchPanel {
-    padding-top: 10px;
+.card-logo {
+    position: relative;
+    bottom: 400px;
+    left: 250px;
 }
 
 #guardianLogo {
-    height: 60px;
-    width: 60px;
+    height: 40px;
+    width: 40px;
     position: relative;
     left: 180px;
-    top: 40px;
+    top: 55px;
 }
 
 #NYTimesLogo {
-    height: 80px;
-    width: 80px;
+    height: 68px;
+    width: 68px;
     position: relative;
     left: 180px;
     top: 40px;
@@ -147,7 +157,7 @@ label {
 .commonWords{
     font-size: 18px;
     position: relative;
-    bottom: 40px;
+    bottom: 0;
 }
 
 

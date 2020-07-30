@@ -186,8 +186,8 @@ function NYTimesSearch() {
     NYTimesSearchPresent();
 }
 
-$("<img>").attr("src", "https://cms.groupeditors.com/img/dfd82319-1720-487e-88f2-8ef4f6e1da21.jpg?crop=100,0,500,400&w=400&h=400&scale=both").attr("id", "NYTimesLogo").addClass("NYTimesLogos").appendTo(".card-title");
-$("<img>").attr("src", "https://i.imgur.com/fkM9EkZ.png").attr("id", "guardianLogo").addClass("guardianLogos").appendTo(".card-title");
+$("<img>").attr("src", "https://cms.groupeditors.com/img/dfd82319-1720-487e-88f2-8ef4f6e1da21.jpg?crop=100,0,500,400&w=400&h=400&scale=both").attr("id", "NYTimesLogo").addClass("NYTimesLogos").appendTo(".card-logo");
+$("<img>").attr("src", "https://i.imgur.com/fkM9EkZ.png").attr("id", "guardianLogo").addClass("guardianLogos").appendTo(".card-logo");
 $(".NYTimesLogos").addClass("hide");
 $(".guardianLogos").addClass("hide");
 
