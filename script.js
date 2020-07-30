@@ -6,13 +6,12 @@ $(document).ready(function () {
     });
     function autoplay() {
         $(".carousel").carousel("next");
-        setTimeout(autoplay,5500);
+        setTimeout(autoplay, 5500);
     }
     autoplay();
 });
 
 $(".current-date").text(moment().format("LLL"));
-
 $("#preCOVID").addClass("hide");
 $("#postCOVID").addClass("hide");
 
@@ -22,7 +21,7 @@ var searchTerm = keywordSearch.value.toLowerCase()
 var title;
 var word;
 var titleArray = [];
-var removeWords = ['the', 'a', 'an', 'some', 'time', 'really', 'today', 'dont', 'do', 'of', 'is', 'are', 'going', 'to', 'got', 'didnt', 'cant', 'can', 'will','going', 'new', 'just', 'see', 'one', 'might', 'shall', 'in', 'for', 'and', "", 'be', 'as', 'arent', 'with', 'its', searchTerm, searchTerm+"s", searchTerm+"es"];
+var removeWords = ['the', 'a', 'an', 'some', 'time', 'really', 'today', 'dont', 'do', 'of', 'is', 'are', 'going', 'to', 'got', 'didnt', 'cant', 'can', 'will', 'going', 'new', 'just', 'see', 'one', 'might', 'shall', 'in', 'for', 'and', "", 'be', 'as', 'arent', 'with', 'its', searchTerm, searchTerm + "s", searchTerm + "es"];
 var beginDate;
 var endDate;
 var displayObj = {};
@@ -58,7 +57,7 @@ function sortWords() {
             cnt++;
         }
     }
-    
+
     for (var keyword in displayObj) {
         sortableDisplayObj.push([keyword, displayObj[keyword]]);
     }
@@ -66,7 +65,7 @@ function sortWords() {
     sortableDisplayObj.sort(function (a, b) {
         return b[1] - a[1];
     })
-    
+
     if (cnt > 0) {
     }
     titleArray = [];
@@ -98,7 +97,7 @@ function GuardianSearchPast() {
 
         sortWords();
         for (var i = 0; i < 10; i++) {
-            $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).attr("id", "word" + (i+1)).appendTo($("#preCOVID"));
+            $("<p>").addClass("commonWords").html((i + 1) + '. ' + sortableDisplayObj[i][0].charAt(0).toUpperCase() + sortableDisplayObj[i][0].slice(1)).attr("id", "word" + (i + 1)).appendTo($("#preCOVID"));
         }
     })
 }
