@@ -31,10 +31,8 @@ Materialize: https://materializecss.com/
 - Moment.js: https://momentjs.com/
 ​
 ​
-### Tasks and Roles       
-- Wireframe- Group
-- Back-end: Connor Cote, Hae Seung Sung
-- Front-end: Andreia Chapman, Henry Liu
+### Tasks and Roles      
+- Henry Liu
 
 ### Link
 - Deployed page: https://cotec4.github.io/Pandemic-Effects/
