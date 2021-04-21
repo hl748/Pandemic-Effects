@@ -36,4 +36,3 @@ Materialize: https://materializecss.com/
 
 ### Link
 - Deployed page: https://cotec4.github.io/Pandemic-Effects/
-- Presentation: https://docs.google.com/presentation/d/18RgHmu_pIR4SJq2zS9_al6_xfHUqHl7RAtPl6xg0gbY/edit?usp=sharing
